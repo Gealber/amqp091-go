@@ -746,7 +746,7 @@ func (c *Connection) dispatchClosed(f frame) {
 // will demux the streams and dispatch to one of the opened channels or
 // handle on channel 0 (the connection channel).
 func (c *Connection) reader(r io.Reader) {
-	buf := bufio.NewReaderSize(r, 16_384) // 16 KB
+	buf := bufio.NewReaderSize(r, 65_536) // 64 KB
 	frames := &reader{buf}
 	conn, haveDeadliner := r.(readDeadliner)
 
